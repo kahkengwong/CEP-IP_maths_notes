@@ -19,14 +19,14 @@
 #   K  Pitcher plot, score space        (04b)
 #   L  Pitcher plot, copula space       (04e)
 #
-# Output (written to OUT_DIR):
+# Output (figures/, tables/ and logs/ of the repository folder):
 #   00_overview.png               the 12-panel overview
 #   00_console_log.txt            console output of this run
 #   00_guardrails.txt             PASS/WARN/FAIL ledger
 #
-# Run: setwd() to the folder that holds 00_setup.r, then source this file.
+# Run: setwd() to the repository folder, then source this file from scripts/.
 
-source("00_setup.r")
+source("scripts/00_setup.r")
 start_log("00")
 
 BASE <- 9
@@ -250,7 +250,7 @@ add_check("G3_panel_count", if (length(P) == 12 && identical(names(P), LETTERS[1
 # 3. Assemble (grid only, no extra packages)
 # ---------------------------------------------------------------------------
 NC <- 4; NR <- 3
-fn <- file.path(OUT_DIR, "00_overview.png")
+fn <- file.path(FIG_DIR, "00_overview.png")
 png(fn, width = 18, height = 13.8, units = "in", res = 300)
 grid::grid.newpage()
 lay <- grid::grid.layout(NR + 1, NC, heights = grid::unit(c(0.5, rep(1, NR)), c("in", rep("null", NR))))

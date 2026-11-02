@@ -1,4 +1,4 @@
-Run started: 2026-11-02 17:02:14 
+Run started: 2026-11-02 17:22:10 
 R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
 
 k selected by PRSS: all cells 4, SKCS-core 10
@@ -38,4 +38,4 @@ Saved 03g_IPx_to_IPy.png
 Saved 03h_IPRS_components.png 
 
 Guardrail summary: 12 PASS, 0 WARN, 0 FAIL
-Run finished: 2026-11-02 17:02:42 
+Run finished: 2026-11-02 17:22:31 

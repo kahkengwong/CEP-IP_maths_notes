@@ -39,7 +39,13 @@ suppressPackageStartupMessages({
 N_DONORS <- 20L
 
 SEED    <- 20261102
-OUT_DIR <- "."   # change to the repository folder if needed
+# Output folders, relative to the repository folder (the working directory).
+# The scripts are in scripts/ and are run from the repository folder, for
+# example source("scripts/01_ranks_and_PIT.r").
+FIG_DIR <- "figures"
+TAB_DIR <- "tables"
+LOG_DIR <- "logs"
+for (d in c(FIG_DIR, TAB_DIR, LOG_DIR)) dir.create(d, showWarnings = FALSE)
 
 # ---------------------------------------------------------------------------
 # Colours
@@ -157,7 +163,7 @@ legend_inside <- function(x, y) {
 # ---------------------------------------------------------------------------
 start_log <- function(prefix) {
   LOG_PREFIX <<- prefix
-  sink(file.path(OUT_DIR, paste0(prefix, "_console_log.txt")), split = TRUE)
+  sink(file.path(LOG_DIR, paste0(prefix, "_console_log.txt")), split = TRUE)
   cat("Run started:", format(Sys.time()), "\n")
   cat("R version:", R.version.string,
       " ggplot2:", as.character(packageVersion("ggplot2")),
@@ -176,7 +182,7 @@ finish_log <- function(script_name) {
                sprintf("Summary: %d PASS, %d WARN, %d FAIL",
                        sum(ledger$status == "PASS"), sum(ledger$status == "WARN"),
                        sum(ledger$status == "FAIL"))),
-             file.path(OUT_DIR, paste0(LOG_PREFIX, "_guardrails.txt")))
+             file.path(LOG_DIR, paste0(LOG_PREFIX, "_guardrails.txt")))
   cat("\nGuardrail summary:", sum(ledger$status == "PASS"), "PASS,",
       sum(ledger$status == "WARN"), "WARN,", sum(ledger$status == "FAIL"), "FAIL\n")
   cat("Run finished:", format(Sys.time()), "\n")
@@ -184,7 +190,7 @@ finish_log <- function(script_name) {
 }
 
 save_plot <- function(p, name, w = 6, h = 5) {
-  ggsave(file.path(OUT_DIR, name), p, width = w, height = h, dpi = 300)
+  ggsave(file.path(FIG_DIR, name), p, width = w, height = h, dpi = 300)
   cat("Saved", name, "\n")
 }
 

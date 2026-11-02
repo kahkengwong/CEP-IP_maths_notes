@@ -7,7 +7,7 @@
 # The composite y is the mean of eight partner genes, computed with
 # cepip_composite() in 00_setup.r.
 #
-# Output (written to OUT_DIR):
+# Output (figures/, tables/ and logs/ of the repository folder):
 #   01a_expression_space.png    composite against GOI
 #   01b_expression_margins.png  histograms of GOI and composite with density curves
 #   01c_copula_space.png        v against u
@@ -16,9 +16,9 @@
 #   01_console_log.txt          console output of this run
 #   01_guardrails.txt           PASS/WARN/FAIL ledger
 #
-# Run: setwd() to the folder that holds 00_setup.r, then source this file.
+# Run: setwd() to the repository folder, then source this file from scripts/.
 
-source("00_setup.r")
+source("scripts/00_setup.r")
 start_log("01")
 
 dat <- simulate_cells()

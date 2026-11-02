@@ -11,7 +11,7 @@
 # from cepip_ip(). Figure 04b is plot_pitcher() from cepip; the copula-space
 # figures are drawn here because the package draws them only after CMRF.
 #
-# Output (written to OUT_DIR):
+# Output (figures/, tables/ and logs/ of the repository folder):
 #   04a_CEPIP_groups.png          composite against GOI by group, with IPy
 #   04b_pitcher_groups.png        Ki against Si by group, the two spines (cepip plot_pitcher)
 #   04c_expression_to_copula.png  expression space and copula space, with IPy and IPv
@@ -21,9 +21,9 @@
 #   04_console_log.txt            console output of this run
 #   04_guardrails.txt             PASS/WARN/FAIL ledger
 #
-# Run: setwd() to the folder that holds 00_setup.r, then source this file.
+# Run: setwd() to the repository folder, then source this file from scripts/.
 
-source("00_setup.r")
+source("scripts/00_setup.r")
 start_log("04")
 
 dat <- simulate_cells()
@@ -83,7 +83,7 @@ add_check("G4_IPv_split", if (identical(pre_cop, dat$y[dat$core] < IPy)) "PASS" 
           "Pre-IP in copula space (v <= IPv) matches pre-IP in expression space (y < IPy)")
 
 write.csv(dat[, c("cell", "x", "y", "u", "v", "Si", "Ki", "u_SK", "v_SK", "core", "trep_core", "group")],
-          file.path(OUT_DIR, "04_cell_groups.csv"), row.names = FALSE)
+          file.path(TAB_DIR, "04_cell_groups.csv"), row.names = FALSE)
 cat("Saved 04_cell_groups.csv\n")
 
 # Worked example cells: a post-IP TREP cell near the middle of its group,

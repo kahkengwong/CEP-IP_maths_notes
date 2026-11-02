@@ -13,7 +13,7 @@
 # scores are also computed by hand (cell_scores() in 00_setup.r) and checked
 # against the package. Figure 02e is plot_pitcher() from cepip.
 #
-# Output (written to OUT_DIR):
+# Output (figures/, tables/ and logs/ of the repository folder):
 #   02a_rho_as_pearson_of_ranks.png  v against u with the least-squares line
 #   02b_Si_in_copula_space.png       copula space coloured by Si (turbo, 5th to 95th percentile)
 #   02c_Ki_in_copula_space.png       copula space coloured by Ki (turbo, 5th to 95th percentile)
@@ -23,9 +23,9 @@
 #   02_console_log.txt               console output of this run
 #   02_guardrails.txt                PASS/WARN/FAIL ledger
 #
-# Run: setwd() to the folder that holds 00_setup.r, then source this file.
+# Run: setwd() to the repository folder, then source this file from scripts/.
 
-source("00_setup.r")
+source("scripts/00_setup.r")
 start_log("02")
 
 dat <- simulate_cells()
@@ -91,7 +91,7 @@ print(round(tapply(dat$core, dat$source, mean), 3))
 add_check("G6_core_size", if (n_core >= 10) "PASS" else "FAIL", sprintf("SKCS-core n = %d", n_core))
 
 write.csv(dat[, c("cell", "x", "y", "u", "v", "Si", "Ki", "core")],
-          file.path(OUT_DIR, "02_cell_scores.csv"), row.names = FALSE)
+          file.path(TAB_DIR, "02_cell_scores.csv"), row.names = FALSE)
 cat("Saved 02_cell_scores.csv\n")
 
 # ---------------------------------------------------------------------------

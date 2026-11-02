@@ -1,52 +1,63 @@
 # Rank correlation, copulas and the inflection point: notes behind CEP-IP
 
-These notes record the mathematics behind the CEP-IP framework and the CMRF filter. Each part pairs handwritten working from self-study (2024 to 2026, SPM and STPM calculus and statistics) with R scripts that reproduce the main identities on simulated data.
+These notes record the mathematics behind the CEP-IP framework and the CMRF filter. Each part pairs handwritten working from my self-study of calculus and statistics (2024 to 2026) with R scripts that reproduce the main identities on simulated data.
 
 The handwritten pages are photographs of the original notebooks, shown two per row. Click a page to open it at full size. Corrections found later are added as typed notes below each page; the pages themselves are left unedited.
 
 ## Overview of the plots
 
-The figure below shows one example of each plot type, in the order scripts 01 to 04 produce them. It is drawn by `00_overview_figure.r`.
+The figure below shows one example of each plot type, in the order scripts 01 to 04 produce them. It is drawn by `scripts/00_overview_figure.r`.
 
-![](00_overview.png)
+![](figures/00_overview.png)
 
 ## Contents of this repository
 
 | Part | Files | Content |
 |---|---|---|
 | A | `handwritten/hw_A*.jpg` | Calculus: limits, derivatives, smoothness, concavity, inflection points, integrals, small changes |
-| B | `handwritten/hw_B*.jpg` | Statistics: sums of squares, penalised regression, Pearson and Spearman |
-| 0 | `00_setup.r` | Shared settings, simulated cells and functions, sourced by all other scripts |
-| 0 | `00_overview_figure.r`, `00_overview.png` | One panel for each plot type in scripts 01 to 04 |
-| 1 | `01_ranks_and_PIT.r`, `01*.png` | Ranks and the probability integral transform |
-| 2 | `02_spearman_kendall_scores.r`, `02*.png` | Spearman's rho and Kendall's tau, the per-cell scores S<sub>i</sub> and K<sub>i</sub>, and the pitcher plot |
-| 3 | `03_gam_trep_ip_iprs.r`, `03*.png` | GAM fit with the PRSS search over k, TREP cells, the inflection point and the IP reliability score (IPRS) |
-| 4 | `04_groups_and_copula.r`, `04*.png` | Pre-IP and post-IP groups, and the IP and gates in copula space |
+| B | `handwritten/hw_B*.jpg` | Statistics: sums of squares, penalised regression, Pearson, Spearman and Kendall |
+| 0 | `scripts/00_setup.r` | Shared settings, simulated cells and functions, sourced by all other scripts |
+| 0 | `scripts/00_overview_figure.r`, `figures/00_overview.png` | One panel for each plot type in scripts 01 to 04 |
+| 1 | `scripts/01_ranks_and_PIT.r`, `figures/01*.png` | Ranks and the probability integral transform |
+| 2 | `scripts/02_spearman_kendall_scores.r`, `figures/02*.png` | Spearman's rho and Kendall's tau, the per-cell scores S<sub>i</sub> and K<sub>i</sub>, and the pitcher plot |
+| 3 | `scripts/03_gam_trep_ip_iprs.r`, `figures/03*.png` | GAM fit with the PRSS search over k, TREP cells, the inflection point and the IP reliability score (IPRS) |
+| 4 | `scripts/04_groups_and_copula.r`, `figures/04*.png` | Pre-IP and post-IP groups, and the IP and gates in copula space |
 
-Each script writes a console log (`*_console_log.txt`) and a guardrail ledger (`*_guardrails.txt`). The scripts need R, ggplot2, mgcv and the R package [cepip](https://github.com/kahkengwong/cepip), available on CRAN:
+Folders:
+
+- `scripts/`. The R scripts.
+- `figures/`. All figures.
+- `tables/`. Per-cell values and the IP summary (CSV).
+- `logs/`. The console log (`*_console_log.txt`) and the guardrail ledger (`*_guardrails.txt`) of each script.
+- `handwritten/`. Photographs of the notebook pages.
+
+The scripts need R, ggplot2, mgcv and the R package [cepip](https://github.com/kahkengwong/cepip), available on CRAN: The scripts need R, ggplot2, mgcv and the R package [cepip](https://github.com/kahkengwong/cepip), available on CRAN:
 
 ```r
 install.packages("cepip")
 ```
 
-The CEP-IP steps are run with cepip: `cepip_composite()`, `cepip_fit()`, `cepip_ep()`, `cepip_skcs()` and `cepip_ip()`, and the figures that cepip already draws use its plot functions (`plot_prss()`, `plot_fit()`, `plot_residual()` and `plot_pitcher()`). The other figures are drawn with ggplot2. The formulas for S<sub>i</sub>, K<sub>i</sub> and the five IPRS components are also written out by hand in `00_setup.r`, and the guardrails check that the hand calculation gives the same numbers as the package.
+- The CEP-IP steps are run with cepip: `cepip_composite()`, `cepip_fit()`, `cepip_ep()`, `cepip_skcs()` and `cepip_ip()`.
+- The figures that cepip already draws use its plot functions: `plot_prss()`, `plot_fit()`, `plot_residual()` and `plot_pitcher()`.
+- The other figures are drawn with ggplot2.
+- The formulas for S<sub>i</sub>, K<sub>i</sub> and the five IPRS components are also written out by hand in `scripts/00_setup.r`. The guardrails check that the hand calculation gives the same numbers as the package.
 
 The simulated cells come from 20 donors, so cepip fits its donor random intercept and inverse-donor weights as in the published pipeline. The donors have no effect on expression in the simulation.
 
 ## Running the scripts
 
-Set the working directory to the repository folder, then run the scripts in order. Each script sources `00_setup.r` and rebuilds the same simulated cells, so the scripts can also be run one at a time.
+Set the working directory to the repository folder, then run the scripts in order. Each script sources `scripts/00_setup.r` and rebuilds the same simulated cells, so the scripts can also be run one at a time.
 
 ```r
 setwd("path/to/this/repository")
-source("00_overview_figure.r")
-source("01_ranks_and_PIT.r")
-source("02_spearman_kendall_scores.r")
-source("03_gam_trep_ip_iprs.r")
-source("04_groups_and_copula.r")
+source("scripts/00_overview_figure.r")
+source("scripts/01_ranks_and_PIT.r")
+source("scripts/02_spearman_kendall_scores.r")
+source("scripts/03_gam_trep_ip_iprs.r")
+source("scripts/04_groups_and_copula.r")
 ```
 
-The figures, the CSV tables, the console logs and the guardrail ledgers are written to the same folder.
+The figures are written to `figures/`, the CSV tables to `tables/`, and the console logs and guardrail ledgers to `logs/`.
 
 ---
 
@@ -118,7 +129,7 @@ Relevance: the curvature penalty ∫ f''(x)² dx in Part B1 is an integral of th
 
 For a small change δx, the change in y is approximately δy ≈ (dy/dx) δx (`hw_A7`). Example 2 on the page uses this to estimate ∛63.98 ≈ 4 − 1/2400 ≈ 3.9996.
 
-Relevance to the scripts: the same ratio of small changes, read the other way, estimates a derivative. Script 03 computes f'(x) and f''(x) of the fitted curve, and the slope R'(IPx) used in IPRS component C3, from differences between neighbouring points of a 2,000-point grid. IPx is first bracketed between two neighbouring grid points where R(x) changes sign, and then refined with Brent's method.
+Relevance to the scripts: the same ratio of small changes, read the other way, estimates a derivative. Script 03 computes f'(x) and f''(x) of the fitted curve, and the slope R'(IPx) used in IPRS component C3, from differences between neighbouring points of a 2,000-point grid. IPx is located between the two neighbouring grid points where R(x) changes sign from negative to positive. The bounds of its 95% CI are bracketed the same way and then refined with Brent's method.
 
 <p align="center"><img src="handwritten/hw_A7_small_changes_approximation.jpg" width="49%"></p>
 
@@ -157,7 +168,7 @@ r = SS_xy / √(SS_xx · SS_yy). The denominator is the geometric mean of the tw
 3. Tied values receive the average of the ranks they span (worked example with two tied scores of 0).
 4. The mean rank is (n + 1)/2, from 1 + 2 + … + n = n(n + 1)/2 (derived on the page by writing the sum forwards and backwards).
 
-Script 01 shows the effect of ties in copula space (`01e_ties_zero_GOI.png`). Script 02 checks that ρ equals 3 × mean(S<sub>i</sub>) × (n − 1)/(n + 1) and that τ<sub>b</sub> equals mean(K<sub>i</sub>), both to machine precision.
+Script 01 shows the effect of ties in copula space (`figures/01e_ties_zero_GOI.png`). Script 02 checks that ρ equals 3 × mean(S<sub>i</sub>) × (n − 1)/(n + 1) and that τ<sub>b</sub> equals mean(K<sub>i</sub>), both to machine precision.
 
 <p align="center"><img src="handwritten/hw_B3_spearman_ranks_and_ties.jpg" width="49%"></p>
 
@@ -169,80 +180,93 @@ Writing the numerator of rho as Σ (R_x,i − R̄)(R_y,i − R̄) shows that rho
 
 > Note added later. The boxed line ρ = ΣSᵢ / (σ_Rx · σ_Ry) holds when Sᵢ includes the factor 1/(n − 1). With Sᵢ defined as the rank product (R_x,i − R̄)(R_y,i − R̄), as on this page, ρ = ΣSᵢ / ((n − 1) σ_Rx σ_Ry) = ΣSᵢ / √(SS_xx · SS_yy). The three equivalent forms at the bottom of the page are correct.
 
+### B5. Kendall's tau as a sum of per-cell terms
+
+Kendall's tau splits into per-cell terms in the same way as Spearman's rho in B4.
+
+1. τ<sub>b</sub> = (C − D) / √((N<sub>p</sub> − T<sub>x</sub>)(N<sub>p</sub> − T<sub>y</sub>)), where C and D are the numbers of concordant and discordant pairs, N<sub>p</sub> = n(n − 1)/2 is the number of pairs, and T<sub>x</sub> and T<sub>y</sub> are the pairs tied on the GOI and on the composite.
+2. Each cell is part of n − 1 pairs. Its Kendall score is K<sub>i</sub> = (C<sub>i</sub> − D<sub>i</sub>) / (n − 1), where C<sub>i</sub> and D<sub>i</sub> are the concordant and discordant pairs involving cell i.
+3. Without ties, τ<sub>b</sub> is the mean of K<sub>i</sub>. Script 02 checks this to machine precision.
+4. Without ties, K<sub>i</sub> > 0.5 means that more than three quarters of the pairs of cell i are concordant. This is the K<sub>i</sub> gate of the SKCS-core.
+
 ---
 
-## Part 1. Ranks and the probability integral transform (`01_ranks_and_PIT.r`)
+## Part 1. Ranks and the probability integral transform (`scripts/01_ranks_and_PIT.r`)
 
 The simulation has 1,950 GOI-positive cells. The composite is the mean of eight partner genes (`cepip_composite()`).
 
 **01a (left).** Composite against GOI in expression space. **01c (right).** Copula space: u = rank(GOI)/(n + 1) and v = rank(composite)/(n + 1). Both margins are uniform on (0, 1).
 
-<img src="01a_expression_space.png" width="49%"> <img src="01c_copula_space.png" width="49%">
+<img src="figures/01a_expression_space.png" width="49%"> <img src="figures/01c_copula_space.png" width="49%">
 
 **01b.** Margins of the GOI and the composite, with a kernel density curve reflected at 0. Both are right-skewed.
 
-<img src="01b_expression_margins.png" width="80%">
+<img src="figures/01b_expression_margins.png" width="80%">
 
 **01d (left).** Taking the values back from the log1p scale to the CP10K scale changes expression space but leaves copula space identical point for point, because a strictly increasing transformation keeps the ranks. **01e (right).** When 30% of cells are set to GOI = 0, all tied zeros receive the same average rank and form a vertical stripe at u = ((n<sub>0</sub> + 1)/2)/(n + 1). This is why the inflection point is located on GOI-positive cells only.
 
-<img src="01d_invariance.png" width="49%"> <img src="01e_ties_zero_GOI.png" width="49%">
+<img src="figures/01d_invariance.png" width="49%"> <img src="figures/01e_ties_zero_GOI.png" width="49%">
 
-## Part 2. Spearman's rho, Kendall's tau and the per-cell scores (`02_spearman_kendall_scores.r`)
+## Part 2. Spearman's rho, Kendall's tau and the per-cell scores (`scripts/02_spearman_kendall_scores.r`)
 
 **02a (left).** Spearman's ρ is Pearson's r of u and v. **02b (right).** S<sub>i</sub> of each cell in copula space (`cepip_skcs()`). S<sub>i</sub> is positive in the lower-left and upper-right quadrants and near 0 at the middle GOI rank. Colours span the 5th to 95th percentile.
 
-<img src="02a_rho_as_pearson_of_ranks.png" width="49%"> <img src="02b_Si_in_copula_space.png" width="49%">
+<img src="figures/02a_rho_as_pearson_of_ranks.png" width="49%"> <img src="figures/02b_Si_in_copula_space.png" width="49%">
 
 **02c (left).** K<sub>i</sub> of each cell in copula space, the share of concordant minus discordant pairs of the cell. **02e (right).** Pitcher plot (`plot_pitcher()`). The SKCS-core holds 1,287 of 1,950 cells (66.0%).
 
-<img src="02c_Ki_in_copula_space.png" width="49%"> <img src="02e_pitcher_plot.png" width="49%">
+<img src="figures/02c_Ki_in_copula_space.png" width="49%"> <img src="figures/02e_pitcher_plot.png" width="49%">
 
 **02d.** Distributions of S<sub>i</sub> and K<sub>i</sub>, with the SKCS-core gates S<sub>i</sub> = 0.05 and K<sub>i</sub> = 0.5.
 
-<img src="02d_Si_Ki_distributions.png" width="80%">
+<img src="figures/02d_Si_Ki_distributions.png" width="80%">
 
-## Part 3. GAM fit, TREP cells, the inflection point and IPRS (`03_gam_trep_ip_iprs.r`)
+## Part 3. GAM fit, TREP cells, the inflection point and IPRS (`scripts/03_gam_trep_ip_iprs.r`)
 
 **03a.** GAM plot of the composite and of a housekeeping control composite, for all GOI-positive cells and for the SKCS-core. Restricting to the SKCS-core raises the deviance explained (DE) from 73.6% to 94.1%. The control composite has a DE close to 0.
 
-![](03a_GAM_plot.png)
+![](figures/03a_GAM_plot.png)
 
 **03b (left).** The basis dimension k is chosen by the lowest penalized residual sum of squares (PRSS) (`cepip_fit()`, `plot_prss()`). **03d (right).** The calculus definition applied to the fitted curve: f(x), f'(x) and f''(x). Here f''(x) = 0 with a change of sign at x = 3.303, while the CEP-IP inflection point from R(x) is IP<sub>x</sub> = 2.739.
 
-<img src="03b_PRSS_k_search.png" width="49%"> <img src="03d_calculus_on_fit.png" width="49%">
+<img src="figures/03b_PRSS_k_search.png" width="49%"> <img src="figures/03d_calculus_on_fit.png" width="49%">
 
 **03c.** CEP-IP plot (`plot_fit()`). TREP cells are the top round(n × DE) cells by explanatory power (`cepip_ep()`).
 
-![](03c_CEPIP_plot.png)
+![](figures/03c_CEPIP_plot.png)
 
 **03e (left).** Residual curve R(x) of the TREP cells (`cepip_ip()`, `plot_residual()`). IP<sub>x</sub> is the first negative-to-positive zero crossing of R(x): 2.739 (95% CI 2.680 to 2.795), IPRS = 0.705 (strong tier). **03f (right).** IP<sub>x</sub> and its 95% CI as three roots: R(x) = 0, R(x) + 1.96 SE = 0 (lower bound) and R(x) − 1.96 SE = 0 (upper bound). The CI bounds are found with Brent's method.
 
-<img src="03e_residual_curve_Rx.png" width="49%"> <img src="03f_brent_CI.png" width="49%">
+<img src="figures/03e_residual_curve_Rx.png" width="49%"> <img src="figures/03f_brent_CI.png" width="49%">
 
 **03g (left).** IP<sub>y</sub> = f(IP<sub>x</sub>) = 1.841 is the threshold on the composite axis that splits pre-IP from post-IP cells (`plot_fit()`). **03h (right).** The five IPRS components for the simulated module (IPRS 0.705, strong tier) and for a simulated control arm with almost no relationship (IPRS 0.252, weak tier). The guardrails check that the components computed by hand equal those of `cepip_ip()`.
 
-<img src="03g_IPx_to_IPy.png" width="49%"> <img src="03h_IPRS_components.png" width="49%">
+<img src="figures/03g_IPx_to_IPy.png" width="49%"> <img src="figures/03h_IPRS_components.png" width="49%">
 
-## Part 4. Pre-IP and post-IP groups in expression, score and copula space (`04_groups_and_copula.r`)
+## Part 4. Pre-IP and post-IP groups in expression, score and copula space (`scripts/04_groups_and_copula.r`)
 
 **04a (left).** CEP-IP plot of the four SKCS-core groups. SKCS-core cells below IP<sub>y</sub> are pre-IP and the others post-IP. Each group is split into TREP and non-TREP cells by the GAM fit of the SKCS-core. **04b (right).** Pitcher plot by group (`plot_pitcher()`). The two spines of the SKCS-core are the pre-IP and post-IP groups.
 
-<img src="04a_CEPIP_groups.png" width="49%"> <img src="04b_pitcher_groups.png" width="49%">
+<img src="figures/04a_CEPIP_groups.png" width="49%"> <img src="figures/04b_pitcher_groups.png" width="49%">
 
 **04c.** One cell (cell A) and IP<sub>y</sub> carried from expression space to copula space. IP<sub>v</sub> = #{composite ≤ IP<sub>y</sub>}/(n + 1) = 0.554.
 
-![](04c_expression_to_copula.png)
+![](figures/04c_expression_to_copula.png)
 
 **04d.** The same cell and the SKCS-core gates carried from score space to copula space. S<sub>i</sub> = 0.05 and K<sub>i</sub> = 0.5 become u<sub>gate</sub> = 0.299 and v<sub>gate</sub> = 0.146.
 
-![](04d_scores_to_copula.png)
+![](figures/04d_scores_to_copula.png)
 
 **04e.** Pitcher plot in copula space (v<sub>SK</sub> against u<sub>SK</sub>). The SKCS-core is the quadrant u<sub>SK</sub> > u<sub>gate</sub> and v<sub>SK</sub> > v<sub>gate</sub>.
 
-<p align="center"><img src="04e_pitcher_copula_space.png" width="55%"></p>
+<p align="center"><img src="figures/04e_pitcher_copula_space.png" width="55%"></p>
 
 ---
 
 ## From the calculus inflection point to the CEP-IP inflection point
 
-The calculus definition in Part A4 was the starting point. In CEP-IP the inflection point is located where the residual curve R(x) crosses zero, found by root-finding with Brent's method, with a confidence interval from the same root search. The f''(x) = 0 definition on the fitted mean curve was tested as an alternative and was not used: on the SEA-AD microglia data the population mean curve had no interior inflection, and its steepest segment lay in the upper tail. The parts of Part A that carried over are the sign analysis around a root (A4) and the check that the curve is continuous and differentiable where a point is read off (A2). Figure 03d shows the two definitions on the simulated cells: f''(x) changes sign at x = 3.303, and R(x) crosses zero at IP<sub>x</sub> = 2.739.
+- The calculus definition in Part A4 was the starting point.
+- In CEP-IP, the inflection point IP<sub>x</sub> is the first negative-to-positive zero crossing of the residual curve R(x). The bounds of its 95% CI are found by root-finding with Brent's method.
+- The f''(x) = 0 definition on the fitted mean curve was tested as an alternative and was not used. On the SEA-AD microglia data, the population mean curve had no interior inflection, and its steepest segment lay in the upper tail.
+- Two parts of Part A carried over: the sign analysis around a root (A4), and the check that the curve is continuous and differentiable where a point is read off (A2).
+- Figure 03d shows the two definitions on the simulated cells. f''(x) changes sign at x = 3.303, and R(x) crosses zero at IP<sub>x</sub> = 2.739.

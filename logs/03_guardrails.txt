@@ -1,4 +1,4 @@
-03_gam_trep_ip_iprs.r guardrails, 2026-11-02 17:02:42
+03_gam_trep_ip_iprs.r guardrails, 2026-11-02 17:22:31
 G1_core_raises_DE        PASS  DE 0.736 (all cells) -> 0.941 (SKCS-core)
 G2_trep_count            PASS  TREP n = 1438 = round(n x DE) = round(1950 x 0.7373)
 G3_IP_found              PASS  1 negative-to-positive crossing(s); the first is the IP

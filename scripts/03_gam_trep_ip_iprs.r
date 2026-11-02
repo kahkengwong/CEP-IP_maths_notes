@@ -12,7 +12,7 @@
 # Figure 03d compares the IP with the calculus definition of an inflection
 # point, f''(x) = 0 with a change of sign, on the same fitted curve.
 #
-# Output (written to OUT_DIR):
+# Output (figures/, tables/ and logs/ of the repository folder):
 #   03a_GAM_plot.png             composite and control composite against GOI, all cells and SKCS-core
 #   03b_PRSS_k_search.png        PRSS by basis dimension k (cepip plot_prss)
 #   03c_CEPIP_plot.png           TREP and non-TREP cells, all cells and SKCS-core (cepip plot_fit)
@@ -25,9 +25,9 @@
 #   03_console_log.txt           console output of this run
 #   03_guardrails.txt            PASS/WARN/FAIL ledger
 #
-# Run: setwd() to the folder that holds 00_setup.r, then source this file.
+# Run: setwd() to the repository folder, then source this file from scripts/.
 
-source("00_setup.r")
+source("scripts/00_setup.r")
 start_log("03")
 
 dat <- simulate_cells()
@@ -109,7 +109,7 @@ summ <- data.frame(arm = c("Simulated module", "Simulated control"),
                    test = c(ip$test$test, ipc$test$test), p = c(ip$test$p, ipc$test$p),
                    rbind(C_pkg, C_ctl), IPRS = c(ip$iprs$IPRS, ipc$iprs$IPRS),
                    tier = c(ip$iprs$tier, ipc$iprs$tier), row.names = NULL)
-write.csv(summ, file.path(OUT_DIR, "03_IP_summary.csv"), row.names = FALSE)
+write.csv(summ, file.path(TAB_DIR, "03_IP_summary.csv"), row.names = FALSE)
 cat("Saved 03_IP_summary.csv\n")
 
 # ---------------------------------------------------------------------------
@@ -168,7 +168,7 @@ g03c <- gridExtra::arrangeGrob(p03c_all, p03c_core, ncol = 2,
                                top = grid::textGrob("CEP-IP plot: TREP cells are the top round(n x DE) cells by EP",
                                                     x = 0.01, hjust = 0,
                                                     gp = grid::gpar(fontsize = 12, fontface = "bold")))
-ggsave(file.path(OUT_DIR, "03c_CEPIP_plot.png"), g03c, width = 11, height = 5.2, dpi = 300)
+ggsave(file.path(FIG_DIR, "03c_CEPIP_plot.png"), g03c, width = 11, height = 5.2, dpi = 300)
 cat("Saved 03c_CEPIP_plot.png\n")
 
 # ---------------------------------------------------------------------------

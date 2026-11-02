@@ -1,4 +1,4 @@
-Run started: 2026-11-02 17:02:09 
+Run started: 2026-11-02 17:22:06 
 R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
 
 [PASS] G1_complete: n = 1950 GOI-positive cells from 20 donors, non-finite values = 0
@@ -19,4 +19,4 @@ Saved 01d_invariance.png
 Saved 01e_ties_zero_GOI.png 
 
 Guardrail summary: 6 PASS, 0 WARN, 0 FAIL
-Run finished: 2026-11-02 17:02:11 
+Run finished: 2026-11-02 17:22:08 

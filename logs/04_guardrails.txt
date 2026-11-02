@@ -1,4 +1,4 @@
-04_groups_and_copula.r guardrails, 2026-11-02 17:02:49
+04_groups_and_copula.r guardrails, 2026-11-02 17:22:37
 G1_groups_complete       PASS  Pre-IP TREP 619; Pre-IP non-TREP 1; Post-IP TREP 593; Post-IP non-TREP 74; Non-SKCS-core 663
 G2_split_by_IPy          PASS  pre-IP below IPy = 1.8409, post-IP at or above it
 G2b_matches_cepip_labels PASS  Pre-IP and post-IP sides equal the labels of cepip_ip() (ip_axis = "y")

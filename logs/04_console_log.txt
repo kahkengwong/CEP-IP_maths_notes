@@ -1,4 +1,4 @@
-Run started: 2026-11-02 17:02:42 
+Run started: 2026-11-02 17:22:31 
 R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
 
 IPx = 2.7388, IPy = 1.8409, IPRS = 0.705 (Strong tier)
@@ -21,4 +21,4 @@ Saved 04d_scores_to_copula.png
 Saved 04e_pitcher_copula_space.png 
 
 Guardrail summary: 5 PASS, 0 WARN, 0 FAIL
-Run finished: 2026-11-02 17:02:49 
+Run finished: 2026-11-02 17:22:37 

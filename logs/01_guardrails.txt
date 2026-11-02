@@ -1,4 +1,4 @@
-01_ranks_and_PIT.r guardrails, 2026-11-02 17:02:11
+01_ranks_and_PIT.r guardrails, 2026-11-02 17:22:08
 G1_complete              PASS  n = 1950 GOI-positive cells from 20 donors, non-finite values = 0
 G1b_composite            PASS  cepip_composite() equals the row mean of P1 to P8, max difference 0.0e+00
 G2_open_interval         PASS  u in [0.0005, 0.9995], v in [0.0005, 0.9995]

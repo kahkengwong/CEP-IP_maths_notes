@@ -1,4 +1,4 @@
-02_spearman_kendall_scores.r guardrails, 2026-11-02 17:02:14
+02_spearman_kendall_scores.r guardrails, 2026-11-02 17:22:10
 G1_no_ties               PASS  The identities below are exact only without ties
 G1b_hand_equals_cepip    PASS  Si and Ki by hand against cepip_skcs(): max differences 1.1e-16 and 0.0e+00
 G1c_rho_tau              PASS  cepip rho and tau against cor(): max difference 0.0e+00
