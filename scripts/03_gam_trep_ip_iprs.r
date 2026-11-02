@@ -18,7 +18,7 @@
 #   03c_CEPIP_plot.png           TREP and non-TREP cells, all cells and SKCS-core (cepip plot_fit)
 #   03d_calculus_on_fit.png      f, f' and f'' of the fitted curve
 #   03e_residual_curve_Rx.png    R(x), IPx and its 95% CI (cepip plot_residual)
-#   03f_brent_CI.png             the three roots found with Brent's method
+#   03f_brent_CI.png             IPx and the two CI bounds as zeros of R(x) and its band edges
 #   03g_IPx_to_IPy.png           IPx carried to the composite axis, IPy = f(IPx) (cepip plot_fit)
 #   03h_IPRS_components.png      C1 to C5 and IPRS, simulated module against control arm
 #   03_IP_summary.csv            k, DE, IP, CI, IPy, components, IPRS and tier for both arms
@@ -222,7 +222,7 @@ p03e <- restyle_cepip(
 save_plot(p03e, "03e_residual_curve_Rx.png", w = 7, h = 4.8)
 
 # ---------------------------------------------------------------------------
-# 8. Figure 03f: the three roots found with Brent's method
+# 8. Figure 03f: IPx and its 95% CI as three roots (CI bounds by Brent's method)
 # IPx solves R(x) = 0. The CI bounds solve R(x) + 1.96 SE = 0 (lower) and
 # R(x) - 1.96 SE = 0 (upper). Values from cepip_ip(); curves from its grid.
 # ---------------------------------------------------------------------------

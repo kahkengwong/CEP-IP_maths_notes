@@ -1,8 +1,24 @@
-# Rank correlation, copulas and the inflection point: notes behind CEP-IP
+<div align="center">
 
-These notes record the mathematics behind the CEP-IP framework and the CMRF filter. Each part pairs handwritten working from my self-study of calculus and statistics (2024 to 2026) with R scripts that reproduce the main identities on simulated data.
+<img src="assets/CEP-IP_with_CMRF_banner.png" alt="CEP-IP with CMRF" width="100%">
 
-The handwritten pages are photographs of the original notebooks, shown two per row. Click a page to open it at full size. Corrections found later are added as typed notes below each page; the pages themselves are left unedited.
+# Rank correlation, copulas and the inflection point:<br>notes behind CEP-IP
+
+[![Study](https://img.shields.io/badge/Study-CEP--IP%20with%20CMRF%20in%20SEA--AD-4E81BE?logo=github&logoColor=white&style=flat-square)](https://github.com/kahkengwong/CEP-IP_with_CMRF_in_SEA-AD)
+[![Preprint](https://img.shields.io/badge/Preprint-bioRxiv-B31B1B?style=flat-square)](https://www.biorxiv.org/content/10.64898/2026.10.22.761284v2)
+[![R package](https://img.shields.io/badge/R%20package-cepip-276DC3?logo=r&logoColor=white&style=flat-square)](https://github.com/kahkengwong/cepip) [![CRAN](https://img.shields.io/cran/v/cepip?label=CRAN&logo=r&logoColor=white&color=276DC3&style=flat-square)](https://CRAN.R-project.org/package=cepip)
+
+![Project Status](https://img.shields.io/badge/status-active-brightgreen?logo=check&logoColor=white&style=flat-square)
+[![R](https://img.shields.io/badge/R-4.6.1-276DC3?logo=r&logoColor=white&style=flat-square)](#running-the-scripts)
+[![GitHub last commit](https://img.shields.io/github/last-commit/kahkengwong/CEP-IP_maths_notes?style=flat-square)](https://github.com/kahkengwong/CEP-IP_maths_notes/commits/main)
+
+### Author: Kah Keng Wong [![ORCID](https://img.shields.io/badge/ORCID-0000--0001--7359--6202-A6CE39?logo=orcid&logoColor=white&style=flat-square)](https://orcid.org/0000-0001-7359-6202)
+
+</div>
+
+These notes record the mathematics behind the CEP-IP framework, from ranks and copula space to the per-cell scores, the SKCS-core and the inflection point. The CMRF steps that follow are not covered here. The R package [cepip](https://github.com/kahkengwong/cepip) implements CEP-IP with CMRF, and the scripts here use it for the CEP-IP steps. Each part pairs handwritten working from my self-study of calculus and statistics (2024 to 2026) with R scripts that reproduce the main identities on simulated data.
+
+The handwritten pages are photographs of the original notebooks, shown two per row where a section has more than one page. Click a page to open it at full size. Corrections found later are added as typed notes below each page; the pages themselves are left unedited.
 
 ## Overview of the plots
 
@@ -30,8 +46,9 @@ Folders:
 - `tables/`. Per-cell values and the IP summary (CSV).
 - `logs/`. The console log (`*_console_log.txt`) and the guardrail ledger (`*_guardrails.txt`) of each script.
 - `handwritten/`. Photographs of the notebook pages.
+- `assets/`. The banner image.
 
-The scripts need R, ggplot2, mgcv and the R package [cepip](https://github.com/kahkengwong/cepip), available on CRAN: The scripts need R, ggplot2, mgcv and the R package [cepip](https://github.com/kahkengwong/cepip), available on CRAN:
+The scripts need R, ggplot2, mgcv and the R package [cepip](https://github.com/kahkengwong/cepip), available on CRAN:
 
 ```r
 install.packages("cepip")
@@ -70,7 +87,7 @@ The derivative is the limit of the gradient of a secant line as the second point
 1. A limit describes the value a function approaches near a point, whether or not the function is defined at that point (`hw_A1a`, `hw_A1b`).
 2. A limit exists only when the left and right limits agree. For |x|/x at 0 the right limit is 1 and the left limit is −1, so the limit does not exist (`hw_A1a`).
 3. The gradient between two points on a curve is δy/δx. As x₂ → x₁, δx → 0, and the secant becomes the tangent (`hw_A1c`, `hw_A1d`).
-4. The gradient function is dy/dx = lim (δx → 0) δy/δx, written in standard form as f'(x) = lim (h → 0) [f(x + h) − f(x)] / h (`hw_A1d`).
+4. The gradient function is dy/dx = lim (δx → 0) δy/δx (`hw_A1c`), written in standard form as f'(x) = lim (h → 0) [f(x + h) − f(x)] / h (`hw_A1d`).
 
 <img src="handwritten/hw_A1a_limit_relation_to_differentiation.jpg" width="49%"> <img src="handwritten/hw_A1b_limits_concept.jpg" width="49%">
 <img src="handwritten/hw_A1c_first_principles_gradient_function.jpg" width="49%"> <img src="handwritten/hw_A1d_secant_to_tangent.jpg" width="49%">
@@ -101,7 +118,7 @@ An inflection point is where the curve changes from concave up to concave down, 
 1. f''(x) > 0 means the gradient is increasing (concave up). f''(x) < 0 means it is decreasing (concave down) (`hw_A4a`).
 2. f''(x) = 0 marks a candidate only. The point is an inflection point if f'' changes sign across it (`hw_A4a`).
 3. Worked example, f(x) = x / (x² − 4): f''(x) = 2x(x² + 12) / (x² − 4)³, so f''(0) = 0, and f'' changes sign at x = 0. The point (0, 0) is an inflection point (`hw_A4b`).
-4. Curve sketching follows a fixed order: domain, key points, edges, asymptotes, extrema and inflection points. A sign chart of f, f' and f'' over each interval gives the shape of every branch (`hw_A4c`, `hw_A4d`).
+4. Curve sketching follows a fixed order. The domain and key points come first (`hw_A4c`), then symmetry, asymptotes, intercepts, extrema from f'(x) = 0 and inflection points from f''(x) = 0. A sign chart of f, f' and f'' over each interval gives the shape of every branch (`hw_A4d`).
 
 <img src="handwritten/hw_A4a_second_derivative_concavity.jpg" width="49%"> <img src="handwritten/hw_A4b_inflection_point_worked_example.jpg" width="49%">
 <img src="handwritten/hw_A4c_curve_sketching_steps.jpg" width="49%"> <img src="handwritten/hw_A4d_curve_sketching_sign_chart.jpg" width="49%">
