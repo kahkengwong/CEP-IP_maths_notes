@@ -1,0 +1,11 @@
+02_spearman_kendall_scores.r guardrails, 2026-11-02 17:02:14
+G1_no_ties               PASS  The identities below are exact only without ties
+G1b_hand_equals_cepip    PASS  Si and Ki by hand against cepip_skcs(): max differences 1.1e-16 and 0.0e+00
+G1c_rho_tau              PASS  cepip rho and tau against cor(): max difference 0.0e+00
+G2_rho_from_Si           PASS  |rho - 3 mean(Si)(n-1)/(n+1)| = 1.11e-16
+G3_tau_from_Ki           PASS  |tau_b - mean(Ki)| = 1.11e-16
+G4_score_ranges          PASS  Si in [-0.615, 1.000], Ki in [-0.611, 1.000]
+G5_Si_copula_form        PASS  4(u-0.5)(v-0.5) = Si x 0.9980, max difference 2.22e-16
+G5b_core_gates           PASS  cepip SKCS-core equals Si > 0.05 and Ki > 0.5
+G6_core_size             PASS  SKCS-core n = 1287
+Summary: 9 PASS, 0 WARN, 0 FAIL

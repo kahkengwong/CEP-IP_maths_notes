@@ -1,0 +1,13 @@
+Run started: 2026-11-02 17:01:46 
+R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
+
+n = 1950, SKCS-core = 1287, k = 4, DE = 0.736, IPx = 2.7388, IPy = 1.8409, IPRS = 0.705 (Strong)
+
+[PASS] G1_IP_found: IPx = 2.7388, IPRS = 0.705 (Strong tier)
+[PASS] G2_groups_complete: Pre-IP TREP 619; Pre-IP non-TREP 1; Post-IP TREP 593; Post-IP non-TREP 74; Non-SKCS-core 663
+[PASS] G3_panel_count: 12 panels: ABCDEFGHIJKL
+Saved 00_overview.png
+[PASS] G4_file_written: 00_overview.png, 1.0 MB
+
+Guardrail summary: 4 PASS, 0 WARN, 0 FAIL
+Run finished: 2026-11-02 17:02:09 

@@ -1,0 +1,41 @@
+Run started: 2026-11-02 17:02:14 
+R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
+
+k selected by PRSS: all cells 4, SKCS-core 10
+DE composite: all cells 73.6%, SKCS-core 94.1%
+DE control  : all cells 0.0%, SKCS-core 0.1%
+TREP cells  : all cells 1438, SKCS-core 1212
+
+[PASS] G1_core_raises_DE: DE 0.736 (all cells) -> 0.941 (SKCS-core)
+[PASS] G2_trep_count: TREP n = 1438 = round(n x DE) = round(1950 x 0.7373)
+IP: x = 2.7388 (95% CI 2.6800 to 2.7950), y = 1.8409, IPRS = 0.705 (Strong)
+Pre-IP vs post-IP TREP residuals: Mann-Whitney U, p = 3.141e-103
+IPRS components: C1=0.983, C2=1.000, C3=0.714, C4=0.660, C5=0.166
+
+[PASS] G3_IP_found: 1 negative-to-positive crossing(s); the first is the IP
+[PASS] G4_R_zero_at_IP: R(IPx) = -8.4e-07 (IPx is interpolated linearly between two grid points)
+[PASS] G5_CI_band_edges: CI [2.6800, 2.7950] holds IPx; R+1.96SE at lower = -2.5e-09, R-1.96SE at upper = 1.9e-12
+[PASS] G6_components_in_0_1: C1=0.983 C2=1.000 C3=0.714 C4=0.660 C5=0.166
+[PASS] G7_IPRS_mean: IPRS = mean(C1..C5) = 0.7047
+[PASS] G8_IPRS_by_hand: C1 to C5 and IPRS by hand against cepip_ip(): max difference 0.0e+00
+[PASS] G9_IPy: IPy = f(IPx) = 1.8409 (population curve, donor term excluded)
+[PASS] G10_module_tier: IPRS 0.705, Strong tier
+Control arm: DE 2.8%, IPx 1.6421, IPRS 0.252 (Weak tier)
+
+[PASS] G11_control_lower: IPRS control 0.252 < module 0.705
+Saved 03_IP_summary.csv
+Saved 03a_GAM_plot.png 
+Saved 03b_PRSS_k_search.png 
+Saved 03c_CEPIP_plot.png
+f''(x) = 0 with a sign change at x = 3.303
+Steepest point of f (largest f'): x = 3.301
+
+[PASS] G12_calculus_candidates: 1 sign change(s) of f''; R(x) IPx = 2.739
+Saved 03d_calculus_on_fit.png 
+Saved 03e_residual_curve_Rx.png 
+Saved 03f_brent_CI.png 
+Saved 03g_IPx_to_IPy.png 
+Saved 03h_IPRS_components.png 
+
+Guardrail summary: 12 PASS, 0 WARN, 0 FAIL
+Run finished: 2026-11-02 17:02:42 

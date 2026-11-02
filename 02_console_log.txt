@@ -1,0 +1,32 @@
+Run started: 2026-11-02 17:02:11 
+R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
+
+[PASS] G1_no_ties: The identities below are exact only without ties
+[PASS] G1b_hand_equals_cepip: Si and Ki by hand against cepip_skcs(): max differences 1.1e-16 and 0.0e+00
+[PASS] G1c_rho_tau: cepip rho and tau against cor(): max difference 0.0e+00
+
+Spearman rho                    = 0.8322879931
+3 x mean(Si) x (n-1)/(n+1)      = 0.8322879931
+3 x mean(Si)                    = 0.8331420598 (differs by (n+1)/(n-1))
+Kendall tau_b                   = 0.6625688387
+mean(Ki)                        = 0.6625688387
+
+[PASS] G2_rho_from_Si: |rho - 3 mean(Si)(n-1)/(n+1)| = 1.11e-16
+[PASS] G3_tau_from_Ki: |tau_b - mean(Ki)| = 1.11e-16
+[PASS] G4_score_ranges: Si in [-0.615, 1.000], Ki in [-0.611, 1.000]
+[PASS] G5_Si_copula_form: 4(u-0.5)(v-0.5) = Si x 0.9980, max difference 2.22e-16
+[PASS] G5b_core_gates: cepip SKCS-core equals Si > 0.05 and Ki > 0.5
+SKCS-core (Si > 0.05 and Ki > 0.5): 1287 of 1950 cells (66.0%)
+SKCS-core share by simulated source:
+background post group  pre group 
+     0.331      0.821      0.752 
+[PASS] G6_core_size: SKCS-core n = 1287
+Saved 02_cell_scores.csv
+Saved 02a_rho_as_pearson_of_ranks.png 
+Saved 02b_Si_in_copula_space.png 
+Saved 02c_Ki_in_copula_space.png 
+Saved 02d_Si_Ki_distributions.png 
+Saved 02e_pitcher_plot.png 
+
+Guardrail summary: 9 PASS, 0 WARN, 0 FAIL
+Run finished: 2026-11-02 17:02:14 

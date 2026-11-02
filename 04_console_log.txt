@@ -1,0 +1,24 @@
+Run started: 2026-11-02 17:02:42 
+R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
+
+IPx = 2.7388, IPy = 1.8409, IPRS = 0.705 (Strong tier)
+
+     Pre-IP TREP  Pre-IP non-TREP     Post-IP TREP Post-IP non-TREP    Non-SKCS-core 
+             619                1              593               74              663 
+[PASS] G1_groups_complete: Pre-IP TREP 619; Pre-IP non-TREP 1; Post-IP TREP 593; Post-IP non-TREP 74; Non-SKCS-core 663
+[PASS] G2_split_by_IPy: pre-IP below IPy = 1.8409, post-IP at or above it
+[PASS] G2b_matches_cepip_labels: Pre-IP and post-IP sides equal the labels of cepip_ip() (ip_axis = "y")
+IPu = 0.5566, IPv = 0.5536, ugate = 0.2993, vgate = 0.1456
+
+[PASS] G3_gates_in_copula: SKCS-core by uSK > ugate and vSK > vgate: 1287 cells, by Si and Ki: 1287 cells (differ only with ties)
+[PASS] G4_IPv_split: Pre-IP in copula space (v <= IPv) matches pre-IP in expression space (y < IPy)
+Saved 04_cell_groups.csv
+Worked cell cell_0775: GOI 3.358 -> u 0.7473, composite 2.662 -> v 0.7535, Si 0.2512 -> uSK 0.5525, Ki 0.8050 -> vSK 0.7711
+Saved 04a_CEPIP_groups.png 
+Saved 04b_pitcher_groups.png 
+Saved 04c_expression_to_copula.png 
+Saved 04d_scores_to_copula.png 
+Saved 04e_pitcher_copula_space.png 
+
+Guardrail summary: 5 PASS, 0 WARN, 0 FAIL
+Run finished: 2026-11-02 17:02:49 

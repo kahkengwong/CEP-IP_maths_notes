@@ -1,0 +1,13 @@
+# Original photos (all 84). Only the selected pages in handwritten/ are published.
+Math_Practice_Pictures/
+README_draft.md
+prepare_repo.r
+prepare_repo_log.txt
+*.rar
+*.zip
+.Rhistory
+.RData
+.Rproj.user/
+Thumbs.db
+desktop.ini
+Transformers_practice/

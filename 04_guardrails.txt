@@ -1,0 +1,7 @@
+04_groups_and_copula.r guardrails, 2026-11-02 17:02:49
+G1_groups_complete       PASS  Pre-IP TREP 619; Pre-IP non-TREP 1; Post-IP TREP 593; Post-IP non-TREP 74; Non-SKCS-core 663
+G2_split_by_IPy          PASS  pre-IP below IPy = 1.8409, post-IP at or above it
+G2b_matches_cepip_labels PASS  Pre-IP and post-IP sides equal the labels of cepip_ip() (ip_axis = "y")
+G3_gates_in_copula       PASS  SKCS-core by uSK > ugate and vSK > vgate: 1287 cells, by Si and Ki: 1287 cells (differ only with ties)
+G4_IPv_split             PASS  Pre-IP in copula space (v <= IPv) matches pre-IP in expression space (y < IPy)
+Summary: 5 PASS, 0 WARN, 0 FAIL

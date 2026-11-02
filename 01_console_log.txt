@@ -1,0 +1,22 @@
+Run started: 2026-11-02 17:02:09 
+R version: R version 4.6.1 (2026-06-24 ucrt)  ggplot2: 4.0.3  mgcv: 1.9.4 
+
+[PASS] G1_complete: n = 1950 GOI-positive cells from 20 donors, non-finite values = 0
+[PASS] G1b_composite: cepip_composite() equals the row mean of P1 to P8, max difference 0.0e+00
+[PASS] G2_open_interval: u in [0.0005, 0.9995], v in [0.0005, 0.9995]
+[PASS] G3_uniform_margins: KS test against Uniform(0,1): p(u) = 1.000, p(v) = 1.000
+
+Pearson r in expression space = 0.8497
+Pearson r in copula space     = 0.8323 (this is Spearman's rho)
+Spearman rho from cor()       = 0.8323
+
+Saved 01a_expression_space.png 
+Saved 01b_expression_margins.png 
+Saved 01c_copula_space.png 
+[PASS] G4_invariance: max |u - u_t|, |v - v_t| = 0
+Saved 01d_invariance.png 
+[PASS] G5_tie_stripe: 585 tied zeros; stripe at u = 0.1502 (expected (n0+1)/2/(n+1) = 0.1502)
+Saved 01e_ties_zero_GOI.png 
+
+Guardrail summary: 6 PASS, 0 WARN, 0 FAIL
+Run finished: 2026-11-02 17:02:11 

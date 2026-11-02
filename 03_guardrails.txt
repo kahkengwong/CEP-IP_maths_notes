@@ -1,0 +1,14 @@
+03_gam_trep_ip_iprs.r guardrails, 2026-11-02 17:02:42
+G1_core_raises_DE        PASS  DE 0.736 (all cells) -> 0.941 (SKCS-core)
+G2_trep_count            PASS  TREP n = 1438 = round(n x DE) = round(1950 x 0.7373)
+G3_IP_found              PASS  1 negative-to-positive crossing(s); the first is the IP
+G4_R_zero_at_IP          PASS  R(IPx) = -8.4e-07 (IPx is interpolated linearly between two grid points)
+G5_CI_band_edges         PASS  CI [2.6800, 2.7950] holds IPx; R+1.96SE at lower = -2.5e-09, R-1.96SE at upper = 1.9e-12
+G6_components_in_0_1     PASS  C1=0.983 C2=1.000 C3=0.714 C4=0.660 C5=0.166
+G7_IPRS_mean             PASS  IPRS = mean(C1..C5) = 0.7047
+G8_IPRS_by_hand          PASS  C1 to C5 and IPRS by hand against cepip_ip(): max difference 0.0e+00
+G9_IPy                   PASS  IPy = f(IPx) = 1.8409 (population curve, donor term excluded)
+G10_module_tier          PASS  IPRS 0.705, Strong tier
+G11_control_lower        PASS  IPRS control 0.252 < module 0.705
+G12_calculus_candidates  PASS  1 sign change(s) of f''; R(x) IPx = 2.739
+Summary: 12 PASS, 0 WARN, 0 FAIL
