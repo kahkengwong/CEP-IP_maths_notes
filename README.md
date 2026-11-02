@@ -61,7 +61,7 @@ install.packages("cepip")
 - The other figures are drawn with ggplot2.
 - The formulas for S<sub>i</sub>, K<sub>i</sub> and the five IPRS components are also written out by hand in `scripts/00_setup.r`. The guardrails check that the hand calculation gives the same numbers as the package.
 
-The simulated cells come from 20 donors, so cepip fits its donor random intercept and inverse-donor weights as in the published pipeline. The donors have no effect on expression in the simulation.
+The simulated cells come from 20 donors, cepip thus fits its donor random intercept and inverse-donor weights as in the published pipeline. The donors have no effect on expression in the simulation.
 
 ## Running the scripts
 
@@ -87,7 +87,7 @@ The figures are written to `figures/`, the CSV tables to `tables/`, and the cons
 The derivative is the limit of the gradient of a secant line as the second point moves onto the first.
 
 1. A limit describes the value a function approaches near a point, whether or not the function is defined at that point (`hw_A1a`, `hw_A1b`).
-2. A limit exists only when the left and right limits agree. For |x|/x at 0 the right limit is 1 and the left limit is −1, so the limit does not exist (`hw_A1a`).
+2. A limit exists only when the left and right limits agree. For |x|/x at 0 the right limit is 1 and the left limit is −1, hence the limit does not exist (`hw_A1a`).
 3. The gradient between two points on a curve is δy/δx. As x₂ → x₁, δx → 0, and the secant becomes the tangent (`hw_A1c`, `hw_A1d`).
 4. The gradient function is dy/dx = lim (δx → 0) δy/δx (`hw_A1c`), written in standard form as f'(x) = lim (h → 0) [f(x + h) − f(x)] / h (`hw_A1d`).
 
@@ -139,7 +139,7 @@ Relevance: the curvature penalty ∫ f''(x)² dx in Part B1 is an integral of th
 
 ### A6. Two questions that needed correction
 
-- **A cubic displacement with no maximum** (`hw_A6a`). The question asked for the maximum displacement of s(t) = 3t³ + (23/4)t² − 3t − 3. The only turning point for t > 0 is a local minimum (s'' > 0 there), and s → ∞ as t → ∞, so no maximum exists. The page rewrites the question as "the displacement at the critical point after passing X".
+- **A cubic displacement with no maximum** (`hw_A6a`). The question asked for the maximum displacement of s(t) = 3t³ + (23/4)t² − 3t − 3. The only turning point for t > 0 is a local minimum (s'' > 0 there), and s → ∞ as t → ∞, hence no maximum exists. The page rewrites the question as "the displacement at the critical point after passing X".
 - **Disc against cylinder method** (`hw_A6b`). For y = x² + 2 rotated about the y-axis, the y-values from 0 to 2 are not bounded by the curve, so ∫ πx² dy over that range does not give the volume. The cylinder must be computed separately and the remainder subtracted.
 
 <img src="handwritten/hw_A6a_textbook_question_corrected.jpg" width="49%"> <img src="handwritten/hw_A6b_disc_vs_cylinder_method.jpg" width="49%">
