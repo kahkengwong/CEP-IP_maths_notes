@@ -16,9 +16,11 @@
 
 </div>
 
-These notes record the mathematics behind the CEP-IP framework, from ranks and copula space to the per-cell scores, the SKCS-core and the inflection point. The CMRF steps that follow are not covered here. The R package [cepip](https://github.com/kahkengwong/cepip) implements CEP-IP with CMRF, and the scripts here use it for the CEP-IP steps. Each part pairs handwritten working from my self-study of calculus and statistics (2024 to 2026) with R scripts that reproduce the main identities on simulated data.
-
-The handwritten pages are photographs of the original notebooks, shown two per row where a section has more than one page. Click a page to open it at full size. Corrections found later are added as typed notes below each page; the pages themselves are left unedited.
+- These are my notes on the mathematics behind the CEP-IP framework, starting from ranks and copula space and building up to the per-cell scores, the SKCS-core and the inflection point (IP).
+- The notes stop before CMRF (the CMRF steps are not covered here).
+- Each part pairs my handwritten working from self-study of calculus and statistics (2024 to 2026) with R scripts that reproduce the main identities on simulated data.
+- For the CEP-IP steps, the scripts use the R package [cepip](https://github.com/kahkengwong/cepip) that implements CEP-IP with CMRF.
+- The handwritten pages are photos of my original notebooks (click a page to see it at full size).
 
 ## Overview of the plots
 
