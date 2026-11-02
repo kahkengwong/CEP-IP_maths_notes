@@ -286,6 +286,6 @@ The simulation has 1,950 GOI-positive cells. The composite is the mean of eight 
 
 - The calculus definition in Part A4 was the starting point.
 - In CEP-IP, the inflection point IP<sub>x</sub> is the first negative-to-positive zero crossing of the residual curve R(x). The bounds of its 95% CI are found by root-finding with Brent's method.
-- The f''(x) = 0 definition on the fitted mean curve was tested as an alternative and was not used. On the SEA-AD microglia data, the population mean curve had no interior inflection, and its steepest segment lay in the upper tail.
+- The f''(x) = 0 definition on the fitted mean curve was tested as an alternative and was not used.
 - Two parts of Part A carried over: the sign analysis around a root (A4), and the check that the curve is continuous and differentiable where a point is read off (A2).
 - Figure 03d shows the two definitions on the simulated cells. f''(x) changes sign at x = 3.303, and R(x) crosses zero at IP<sub>x</sub> = 2.739.
